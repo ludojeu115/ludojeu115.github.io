@@ -1,6 +1,6 @@
 name: Build Gradle project
 
-on: push
+on: [push]
 jobs:
   build-gradle-project:
     runs-on: ubuntu-latest
@@ -10,6 +10,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
+          cache : gradle
       - name: Checkout project sources
         uses: actions/checkout@v2
       - name: Setup Gradle
