@@ -1,0 +1,46 @@
+@import url("css/theme.css");
+header {
+    width:100%;
+    position:fixed;
+    display:flex;
+    flex-wrap:wrap;
+    align-content:flex-start;
+    justify-content:space-evenly;
+    align-items:center;
+    z-index: 99;
+}
+.Ludo{
+    flex-grow:4;
+    padding-left:1em;
+}
+.Infos{
+    display:flex;
+    flex-grow:0.5;
+    gap:1em;
+    justify-content:space-evenly;
+
+}
+
+.blurred-picture{
+    position:absolute;
+    background-image: url("images/blurred.png");
+
+    height: 30em;
+    width: 100%;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.picture {
+    position:absolute;
+    left:50%;
+    top:30em;
+    transform: translate(-50%, -50%);
+    height:40vw;
+    max-height:30em;
+    z-index:2;
+    box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.5);
+    border-radius:50%;
+}

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="JavaScriptLibraryMappings">
-    <excludedPredefinedLibrary name="Portfolio/build/js/node_modules" />
-    <excludedPredefinedLibrary name="Portfolio/build/js/packages/Portfolio-test/node_modules" />
-    <excludedPredefinedLibrary name="Portfolio/build/js/packages/Portfolio/node_modules" />
-  </component>
-</project>
