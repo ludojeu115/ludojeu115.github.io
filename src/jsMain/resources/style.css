@@ -22,9 +22,8 @@ header {
 }
 
 .blurred-picture{
-    position:absolute;
     background-image: url("images/blurred.png");
-
+    margin:0;
     height: 30em;
     width: 100%;
     background-position: bottom;
@@ -32,12 +31,28 @@ header {
     background-size: cover;
 }
 
+.Intro{
+    display:flex;
+    flex-direction:column;
+    flex-wrap:wrap;
+
+    text-align:center;
+    justify-content:space-between;
+
+}
+
+.Intro>H1{
+    flex-grow:1;
+}
+
+.Intro>H4{
+    padding : 0 10%;
+}
 
 .picture {
-    position:absolute;
-    left:50%;
-    top:30em;
-    transform: translate(-50%, -50%);
+    float:right;
+    margin-right:20%;
+    transform: translate(0, -50%);
     height:40vw;
     max-height:30em;
     z-index:2;
