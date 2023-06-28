@@ -21,9 +21,11 @@ fun main() {
             }
 
         }
-        Div({classes("big-div")}) {
+
 
             Div({ classes("blurred-picture") })
+
+        Div({classes("big-div")}) {
             Img(src = "images/Ludo.png", alt = "Photo de Ludovic Lonlas") { classes("picture") }
 
             Div({ classes("Intro", "primary-text", "title-big") }) {
