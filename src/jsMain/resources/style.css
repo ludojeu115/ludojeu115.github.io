@@ -57,9 +57,9 @@ header {
 .big-div{
     display:flex;
     width:80%;
-    margin: 0 auto; //to center div
-flex-wrap:wrap; //so the text is put under the image on small width
-flex-direction:row-reverse;
-    justify-content: space-evenly;//center item on x axis
+    margin: 0 auto;
+    flex-wrap:wrap;
+    flex-direction:row-reverse;
+    justify-content: space-evenly;
 
 }
