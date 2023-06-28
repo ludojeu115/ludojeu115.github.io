@@ -34,29 +34,32 @@ header {
 .Intro{
     display:flex;
     flex-direction:column;
-    flex-wrap:wrap;
-    height:20vw;
-    max-height:15em;
+    flex-wrap:nowrap;
+    height:15em;
+    align-items: center;
     text-align:center;
-    justify-content:space-between;
+    justify-content:space-evenly;
 
 }
 
-.Intro>H1{
-    flex-grow:1;
-}
 
-.Intro>H4{
-    padding : 0 10%;
-}
 
 .picture {
-    float:right;
-    margin-right:20%;
     transform: translate(0, -50%);
     height:40vw;
     max-height:30em;
     z-index:2;
     box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.5);
     border-radius:50%;
+    margin-bottom: -15%;
+}
+
+.big-div{
+    display:flex;
+    width:80%;
+    margin: 0 auto; //to center div
+flex-wrap:wrap; //so the text is put under the image on small width
+flex-direction:row-reverse;
+    justify-content: space-evenly;//center item on x axis
+
 }

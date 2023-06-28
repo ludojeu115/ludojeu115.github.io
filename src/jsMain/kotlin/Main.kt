@@ -21,13 +21,19 @@ fun main() {
             }
 
         }
-        Div({classes("blurred-picture")})
-        Img(src = "images/Ludo.png",alt = "Photo de Ludovic Lonlas"){classes("picture")}
+        Div({classes("big-div")}) {
 
-        Div({classes("Intro","primary-text","title-big")}){
-            H1{ Text("Salut !") }
-            H4{ Text("  Je suis un jeune étudiant passionné d'informatique, actuellement en formation pour un master spécialisé dans l'image et la 3D ") }
+            Div({ classes("blurred-picture") })
+            Img(src = "images/Ludo.png", alt = "Photo de Ludovic Lonlas") { classes("picture") }
+
+            Div({ classes("Intro", "primary-text", "title-big") }) {
+                H1 { Text("Salut !") }
+                H4 { Text("  Je suis un jeune étudiant passionné d'informatique, actuellement en formation pour un master spécialisé dans l'image et la 3D ") }
             }
+        }
+
+
+
         Div({classes("CV","primary","on-primary-text","title-small")}) {
             H1 {
                 Text("Pour voir mon CV c'est ")
