@@ -2,15 +2,14 @@ import androidx.compose.runtime.*
 import org.jetbrains.compose.web.dom.AttrBuilderContext
 import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.*
-import org.jetbrains.compose.web.internal.runtime.ComposeWebInternalApi
 import org.w3c.dom.HTMLDivElement
 
 @Composable
 fun Post(
     titre: String,
-    description: String = "",
+    description: ContentBuilder<HTMLDivElement>? = null,
     duree: String = "",
-    membres: String = "",
+    groupe: String = "",
     attrs: AttrBuilderContext<HTMLDivElement>? = null,
     images: ContentBuilder<HTMLDivElement>? = null
 ) {
@@ -18,31 +17,32 @@ fun Post(
 
     Div(attrs = {
         if (attrs != null) apply(attrs)
-        classes("post", "secondary", "on-secondary-text")
+        classes("post", "surface-variant", "on-surface-variant-text")
     }) {
 
         H1 {
             Text(titre)
         }
         Div({ classes("post-content") }) {
-            H3 {
-                Text(description)
-                Div({
+            P {
+                if (images != null) Div({
                     classes("imgviewer")
                     style {
                         property("float", "right")
                         property("height", "10em")
+                        property("margin-right", "2em")
                     }
                 }) {
-                    if (images != null) images()
-
+                    images()
                 }
+                if (description != null) description()
+
 
             }
         }
-        Div({ classes("post-footer") }) {
+        Div({ classes("post-footer","on-surface-variant-text" ) }) {
             H5 { Text("Durée : $duree") }
-            H5 { Text("Membres : $membres") }
+            H5 { Text("Groupe : $groupe") }
         }
     }
 }
