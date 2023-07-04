@@ -1,0 +1,75 @@
+
+
+.disable-scroll {
+    overflow: hidden;
+}
+
+
+.imgviewer, .imgviewer-fullscreen{
+    position:relative;
+    display:flex;
+    flex-direction:row;
+    cursor: pointer;
+    z-index:1;
+}
+
+.imgviewer{
+    height:500px;
+}
+
+.imgviewer-fullscreen{
+    height: 75%;
+}
+
+
+.imgviewer-fullscreen-background{
+    position:fixed;
+    z-index:100; /*only popup should be above 99*/
+    top:0;
+    left:0;
+    display:flex;
+    height:100%;
+    width:100%;
+    align-items:center;
+    justify-content:center;
+    background-color:rgba(0,0,0,0.5);
+}
+
+
+.imgviewer > img, .imgviewer-fullscreen > img {
+    height : 100%;
+    position: absolute;
+    z-index :0;
+    /*
+    background-color : #eeeeee
+    */
+}
+
+.imgviewer-blur-layer {
+    width : 100%;
+    height : 100%;
+    position: absolute;
+    z-index :1;
+}
+
+
+.blur-left{
+    box-shadow: inset 4em 0 2em -2em #00000088 ;
+}
+.blur-right{
+    box-shadow: inset -4em 0 2em -2em #00000088 ;
+}
+
+.blurred{
+    box-shadow: inset 0 0 4em #00000088 ;
+}
+
+.imgviewer-button-left, .imgviewer-button-right{
+    flex:1;
+}
+.imgviewer-button-center{
+    flex:4;
+}
+.imgviewer-button-left, .imgviewer-button-right, .imgviewer-button-center{
+    z-index:2;
+}

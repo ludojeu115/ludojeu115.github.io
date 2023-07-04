@@ -1,0 +1,172 @@
+/* Made by Ludovic Lonlas */
+
+const get_img_viewer_top_element = function (imgviewer) {
+    let children = imgviewer
+        .children()
+        .not(
+            ".imgviewer-blur-layer, .imgviewer-button-left, .imgviewer-button-right, .imgviewer-button-center"
+        );
+    return children[children.length - 1];
+};
+
+const update_imgviewer_size = function (imgviewer) {
+    let top = get_img_viewer_top_element(imgviewer);
+    let ratio = top.width / top.height;
+    imgviewer.width(imgviewer.height() * ratio);
+};
+const hover_left = function () {
+    $(this).parent().children(".imgviewer-blur-layer").toggleClass("blur-left");
+};
+const hover_center = function () {
+    $(this).parent().children(".imgviewer-blur-layer").toggleClass("blurred");
+};
+const hover_right = function () {
+    $(this)
+        .parent()
+        .children(".imgviewer-blur-layer")
+        .toggleClass("blur-right");
+};
+
+const click_back = function (e) {
+    if (e.isPropagationStopped()) return;
+    $("body").toggleClass("disable-scroll");
+    $(this).remove();
+};
+
+const click_left = function (e) {
+    e.stopPropagation();
+    let imgviewer = $(this).parent();
+    let images = imgviewer
+        .children()
+        .not(
+            ".imgviewer-blur-layer, .imgviewer-button-left, .imgviewer-button-right, .imgviewer-button-center"
+        ); //only select the original content
+
+    let nb_images = images.length;
+
+    // first create of var of last element
+    // remove it from DOM
+    //add it before the first element
+
+    if (nb_images < 2) return;
+
+    /*--------------------------------------------------------*/
+
+    imgviewer.find(images[nb_images - 1]).fadeOut(100);
+    setTimeout(function () {
+        //add the element as the end of the stack
+        let last_element = imgviewer.find(images[nb_images - 1]).detach();
+        imgviewer.find(images[0]).before(last_element);
+        update_imgviewer_size(imgviewer);
+        imgviewer.find(images[nb_images - 2]).fadeIn(300);
+    }, 100);
+
+    /*--------------------------------------------------------*/
+};
+
+const click_right = function (e) {
+    e.stopPropagation();
+    let imgviewer = $(this).parent();
+    let images = imgviewer
+        .children()
+        .not(
+            ".imgviewer-blur-layer, .imgviewer-button-left, .imgviewer-button-right, .imgviewer-button-center"
+        ); //only select the original content
+
+    let nb_images = images.length;
+
+    // first create of var of last element
+    // remove it from DOM
+    //add it before the first element
+
+    if (nb_images < 2) return;
+
+    /*--------------------------------------------------------*/
+
+    imgviewer.find(images[nb_images - 1]).fadeOut(100);
+
+    let first_element = imgviewer.find(images[0]).detach();
+
+    imgviewer.find(images[nb_images - 1]).after(first_element);
+
+    setTimeout(function () {
+        update_imgviewer_size(imgviewer);
+        first_element.fadeIn(300);
+    }, 100);
+
+    /*--------------------------------------------------------*/
+};
+
+const click_center = function (e) {
+    e.stopPropagation();
+    let background = $("<div></div>")
+        .addClass("imgviewer-fullscreen-background")
+        .click(click_back);
+
+    let imgviewer = $(this).parent().clone(true);
+    imgviewer.children(".imgviewer-button-center").off(); //disable event from imgviewer-center
+
+    imgviewer
+        .children(".imgviewer-blur-layer")
+        .removeClass("blurred blur-right blur-left"); //remove existing blur to avoid issues
+
+    background.append(imgviewer);
+    imgviewer.removeClass("imgviewer");
+    imgviewer.addClass("imgviewer-fullscreen");
+    imgviewer.css("height", "");
+
+    $("body").append(background)
+        .toggleClass("disable-scroll");
+
+    update_imgviewer_size(imgviewer);
+};
+
+$(document).ready(function () {
+
+    $(".imgviewer").each(function () {
+        //inside each function
+
+        // only show element on top
+        $(this).children().not(get_img_viewer_top_element($(this))).hide();
+
+
+
+        //the div that will blur the imgviewer
+        let blur_layer = $("<div></div>").addClass("imgviewer-blur-layer");
+        $(this).append(blur_layer);
+
+        //add the buttons
+        $(this).append(
+            $("<div></div>")
+                .addClass("imgviewer-button-left")
+                .hover(hover_left)
+                .click(click_left)
+        );
+        $(this).append(
+            $("<div></div>")
+                .addClass("imgviewer-button-center")
+                .hover(hover_center)
+                .click(click_center)
+        );
+        $(this).append(
+            $("<div></div>")
+                .addClass("imgviewer-button-right")
+                .hover(hover_right)
+                .click(click_right)
+        );
+    });
+
+    //end of onStart function
+});
+$( window ).on( "load", function() {
+    $(".imgviewer").each(function () {
+        update_imgviewer_size($(this));
+    });
+});
+//to make sure the ratio is preserved when resizing
+$(window).resize(function () {
+    $(".imgviewer-fullscreen, .imgviewer").each(function () {
+        update_imgviewer_size($(this));
+    });
+
+});

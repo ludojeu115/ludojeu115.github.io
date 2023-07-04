@@ -1,4 +1,5 @@
-@import url("css/theme.css");
+@import url("css/theme/theme.css");
+@import url("css/imgviewer.css");
 header {
     width:100%;
     position:fixed;
@@ -35,13 +36,22 @@ header {
     display:flex;
     flex-direction:column;
     flex-wrap:nowrap;
-    height:15em;
+    /*height:10em;*/
     align-items: center;
     text-align:center;
     justify-content:space-evenly;
-
+    width:50vw;
+}
+.Main{
+    width:95%;
+    margin: auto;
 }
 
+.CV{
+    text-align: center;
+    margin: auto;
+    padding: 1em 0;
+}
 
 
 .picture {
@@ -51,15 +61,30 @@ header {
     z-index:2;
     box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.5);
     border-radius:50%;
-    margin-bottom: -15%;
+    margin-bottom: -15em;
 }
 
 .big-div{
     display:flex;
     width:80%;
     margin: 0 auto;
+    justify-content: space-evenly;
     flex-wrap:wrap;
     flex-direction:row-reverse;
     justify-content: space-evenly;
-
 }
+
+.post{
+    width:70%;
+    display:flex;
+    border-radius:2em;
+    padding: 1em 3em;
+    flex-direction:column;
+    margin:auto;
+}
+.post-footer{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-evenly;
+}
+
