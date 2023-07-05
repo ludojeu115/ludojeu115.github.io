@@ -28,6 +28,7 @@
     top:0;
     left:0;
     display:flex;
+    flex-direction:column;
     height:100%;
     width:100%;
     align-items:center;
@@ -72,4 +73,10 @@
 }
 .imgviewer-button-left, .imgviewer-button-right, .imgviewer-button-center{
     z-index:2;
+}
+
+.imgviewer-fullscreen-name{
+    text-align: center;
+    margin: 1em auto;
+    /*top: 87.5%;*/
 }

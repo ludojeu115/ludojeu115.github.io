@@ -10,6 +10,9 @@ fun Post(
     description: ContentBuilder<HTMLDivElement>? = null,
     duree: String = "",
     groupe: String = "",
+    tech: String = "",
+    lien: String = "",
+    nomduLien: String = "",
     attrs: AttrBuilderContext<HTMLDivElement>? = null,
     images: ContentBuilder<HTMLDivElement>? = null
 ) {
@@ -24,7 +27,7 @@ fun Post(
             Text(titre)
         }
         Div({ classes("post-content") }) {
-            P {
+
                 if (images != null) Div({
                     classes("imgviewer")
                     style {
@@ -38,11 +41,19 @@ fun Post(
                 if (description != null) description()
 
 
-            }
+
         }
-        Div({ classes("post-footer","on-surface-variant-text" ) }) {
+        Div({ classes("post-footer","on-surface-variant-text", "body-small" ) }) {
+            if (lien != "") {
+                A(href = lien ,{
+                    classes("button")
+                }) {
+                    Text(nomduLien)
+                }
+            }
             H5 { Text("Durée : $duree") }
             H5 { Text("Groupe : $groupe") }
+            H5 { Text("technologies utilisées : $tech")}
         }
     }
 }

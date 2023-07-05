@@ -44,10 +44,6 @@ const click_left = function (e) {
 
     let nb_images = images.length;
 
-    // first create of var of last element
-    // remove it from DOM
-    //add it before the first element
-
     if (nb_images < 2) return;
 
     /*--------------------------------------------------------*/
@@ -62,6 +58,11 @@ const click_left = function (e) {
     }, 100);
 
     /*--------------------------------------------------------*/
+
+    if(imgviewer.hasClass("imgviewer-fullscreen")){
+        imgviewer.parent().children("p").text(imgviewer.find(images[nb_images - 2]).attr("alt"));
+    }
+
 };
 
 const click_right = function (e) {
@@ -95,6 +96,10 @@ const click_right = function (e) {
     }, 100);
 
     /*--------------------------------------------------------*/
+
+    if(imgviewer.hasClass("imgviewer-fullscreen")){
+        imgviewer.parent().children("p").text(first_element.attr("alt"));
+    }
 };
 
 const click_center = function (e) {
@@ -103,14 +108,18 @@ const click_center = function (e) {
         .addClass("imgviewer-fullscreen-background")
         .click(click_back);
 
+
     let imgviewer = $(this).parent().clone(true);
     imgviewer.children(".imgviewer-button-center").off(); //disable event from imgviewer-center
-
     imgviewer
         .children(".imgviewer-blur-layer")
         .removeClass("blurred blur-right blur-left"); //remove existing blur to avoid issues
 
-    background.append(imgviewer);
+    let name = $("<p></p>").text(get_img_viewer_top_element(imgviewer).alt).addClass("imgviewer-fullscreen-name on-surface-text title-large");
+
+
+
+    background.append(imgviewer).append(name);
     imgviewer.removeClass("imgviewer");
     imgviewer.addClass("imgviewer-fullscreen");
     imgviewer.css("height", "");
@@ -125,6 +134,8 @@ $(document).ready(function () {
 
     $(".imgviewer").each(function () {
         //inside each function
+
+        $(this).children().last().after($(this).children().first())
 
         // only show element on top
         $(this).children().not(get_img_viewer_top_element($(this))).hide();

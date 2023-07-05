@@ -5,16 +5,16 @@ $(".buttonCV").click(function() {
 });
 $(".buttonProjets").click(function() {
     $('html,body').animate({
-            scrollTop: $(".projets").offset().top},
+            scrollTop: $(".Projets").offset().top},
         'slow');
 });
 $(".buttonComp").click(function() {
     $('html,body').animate({
-            scrollTop: $(".competences").offset().top},
+            scrollTop: $(".Competences").offset().top},
         'slow');
 });
 $(".buttonForm").click(function() {
     $('html,body').animate({
-            scrollTop: $(".formation").offset().top},
+            scrollTop: $(".Formation").offset().top},
         'slow');
 });

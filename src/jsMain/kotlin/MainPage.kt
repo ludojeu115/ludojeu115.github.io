@@ -1,3 +1,6 @@
+import androidExemple.AnnonceChercheur
+import androidExemple.JobOffer
+import androidExemple.ui.theme.AppTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.rememberScrollState
@@ -12,36 +15,12 @@ import androidx.compose.ui.graphics.Color
 
 @Composable
 fun MainPage() {
-        Column(modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())
+    var jobOffer = JobOffer()
+    AppTheme(darkTheme = false) {
+        AnnonceChercheur(jobOffer = jobOffer)
+    }
 
-            , horizontalAlignment = Alignment.CenterHorizontally) {
-            Text("Hello World!", color = Color.Red)
-            Button(onClick = { println("Button clicked!") }) {
-                Text("Click me!")
-            }
-            Button(onClick = { println("Button clicked!") }) {
-                Text("Click me!")
-            }
-            Button(onClick = { println("Button clicked!") }) {
-                Text("Click me!")
-            }
-            Button(onClick = { println("Button clicked!") }) {
-                Text("Click me!")
-            }
-            Button(onClick = { println("Button clicked!") }) {
-                Text("Click me!")
-            }
-            Button(onClick = { println("Button clicked!") }) {
-                Text("Click me!")
-            }
-            Button(onClick = { println("Button clicked!") }) {
-                Text("Click me!")
-            }
-            Button(onClick = { println("Button clicked!") }) {
-                Text("Click me!")
-            }
-            Button(onClick = { println("Button clicked!") }) {
-                Text("Click me!")
-            }
-        }
+
+
+
 }
