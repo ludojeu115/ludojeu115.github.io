@@ -15,8 +15,8 @@ import androidx.compose.ui.graphics.Color
 
 @Composable
 fun MainPage() {
-    var jobOffer = JobOffer()
-    AppTheme(darkTheme = false) {
+    val jobOffer = JobOffer()
+    AppTheme() {
         AnnonceChercheur(jobOffer = jobOffer)
     }
 

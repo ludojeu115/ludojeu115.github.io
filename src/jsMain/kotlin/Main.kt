@@ -10,7 +10,6 @@ fun main() {
 
 
     renderComposable(rootElementId = "root") {
-        //Create canvas of size 600 400 with name ComposeTarget
 
         Header({ classes("surface", "on-surface-text") }) {//Portfolio
             Div({ classes("Ludo", "title-medium") }) {
@@ -29,9 +28,18 @@ fun main() {
         Div({ classes("blurred-picture") })
 
         Div({ classes("big-div") }) {
-            Img(src = "images/Ludo.png", alt = "Photo de Ludovic Lonlas") { classes("picture") }
+            Div({                    style {
+                property("height", "20vw")
+                property("max-height", "15em")
+                property("flex-grow", "0")
+            }}){
+                Img(src = "images/Ludo.png", alt = "Photo de Ludovic Lonlas") { classes("picture") }
+
+
+            }
 
             Div({ classes("Intro", "on-background-text", "title-large") }) {
+
                 H1 { Text("Salut !") }
                 H4 {
                     Text("  Je suis un jeune étudiant passionné d'informatique, actuellement en formation pour un master spécialisé dans l'image et la 3D")
@@ -143,12 +151,6 @@ fun main() {
                         Text(" et j'y ai ajouté les fonctionnalités qu'il manquais au bot pour qu'il fonctionne comme je le souhaitais. J'ai aussi rajouté la possibilité de faire des blind test (jeu où il faut trouver le titre d'une musique) et le bot peut aussi télécharger des musiques et les mets sur un serveur web.")
                         Br()
                     }
-                    Canvas({//Composable canvas
-                        width(600)
-                        height(400)
-                        id ("ComposeTarget")
-
-                    })
                 },
                 duree = "3 semaines",
                 groupe = "1 personne",
@@ -164,13 +166,49 @@ fun main() {
                 }
 
             )
-        }
-               Canvas({//Composable canvas
-/*                    width(600)
-                    height(400)*/
-                    id ("ComposeTarget")
+            Post(
+                titre = "Application Android",
+                description = {
 
-                })
+                    P {
+                        Text(
+                            "Lors d'un projet scolaire, un collègue et moi avons créer une application Android qui permet de proposer et de postuler à des offres d'emploi, J'ai été chargé de réalisé l'interface utilisateur."
+                        )
+                        Br()
+                        Text("Pour réaliser l'interface j'ai utilisé Jetpack Compose. L'avantage de compose est qu'il est multiplateforme, il est possible de l'utiliser pour créer des applications Android, des applications IOS et des applications web(beta)." +
+                                "De plus on peut utiliser Material3 Design qui nous permet de faire des applications plus jolies, sur android 12 on peu faire correspondre le thème avec les couleurs du système .")
+                        Br()
+                        Br()
+                        Text("Voici un exemple interactif de ce que j'ai réalisé :")
+
+                    }
+                    Canvas({//Composable canvas
+                        width(400)
+                        height(300)
+                        id ("ComposeTarget")
+                        classes("android")
+
+                    })
+                },
+                duree = "2 mois",
+                groupe = "2 personne",
+                tech = "Kotlin, Jetpack Compose, Android Studio, Material3 Design",
+
+                images = {
+                    Img(src = "images/projets/mobile-01.jpg", alt = "Login avec un thème personnalisé")
+                    Img(src = "images/projets/mobile-02.jpg", alt = "Login avec un autre thème personnalisé")
+                    Img(src = "images/projets/mobile-03.jpg", alt = "Login avec thème sombre")
+
+                },
+                attrs = {
+                    classes("projet")
+                }
+
+            )
+
+
+        }
+
         Footer {
 
 

@@ -40,8 +40,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import androidExemple.JobOffer
-import androidExemple.ui.theme.AppTheme
 import org.jetbrains.compose.resources.painterResource
 
 /// What the Chercheur sees
@@ -53,7 +51,7 @@ fun AnnonceChercheur(
     modifier: Modifier = Modifier,
     isOpenAtLaunch: Boolean = false,
     titreAnnonce: String = "Titre de l'annonce",
-    annonceImage: String = "https://ludojeu115.github.io/images/Ludo.png",
+    annonceImage: String = "images/Ludo.png",
     entreprise: String = "Entreprise",
     lieu: String = "Lieu",
     jobOffer: JobOffer,
@@ -133,6 +131,7 @@ fun AnnonceChercheur(
                         textAlign = TextAlign.Left,
                         maxLines = 1
                     )
+
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.Center
@@ -156,6 +155,7 @@ fun AnnonceChercheur(
                 }
 
             }
+
             /// Transition between states
             AnimatedVisibility(
                 visible = AnnonceState,
@@ -213,11 +213,9 @@ fun AnnonceChercheur(
                             ), onClick = { onAnnonceShare(jobOffer) }) {
 
                             Image(
-                                painter = painterResource(res = "https://ludojeu115.github.io/images/share.png"),
+                                painter = painterResource(res = "images/share.png"),
                                 contentDescription = "Partager l'annonce",
-                                modifier = Modifier.size(24.dp),
-                                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurfaceVariant)
-
+                                modifier = Modifier.size(24.dp)
                             )
                             Text(
                                 text = "Partager",
@@ -234,13 +232,15 @@ fun AnnonceChercheur(
 
             Image(
                 /// Open and close button
+                painter = painterResource(res = "images/expand.png"),
+                contentDescription = "Ouvrir l'annonce",
                 modifier = Modifier
                     .clickable(onClick = { AnnonceState = !AnnonceState })
                     .padding(horizontal = 16.dp, vertical = 8.dp)
+                    .height(24.dp)
                     .rotate(opened * 180f),
-                painter = painterResource(res = "https://ludojeu115.github.io/images/expand.png"),
-                contentDescription = "Ouvrir l'annonce",
-                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
+
+
             )
 
         }

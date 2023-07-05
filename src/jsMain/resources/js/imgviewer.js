@@ -10,9 +10,30 @@ const get_img_viewer_top_element = function (imgviewer) {
 };
 
 const update_imgviewer_size = function (imgviewer) {
+
     let top = get_img_viewer_top_element(imgviewer);
-    let ratio = top.width / top.height;
-    imgviewer.width(imgviewer.height() * ratio);
+    let ir = top.width / top.height;
+
+    if(imgviewer.hasClass("imgviewer-fullscreen")){
+        let or = $(window).width() / $(window).height();
+        if(ir > or) {
+            let w = $(window).width() * 0.75;
+            let h = w / ir;
+            imgviewer.width(w);
+            imgviewer.height(h);
+        }
+        else{
+            let h = $(window).height() * 0.75;
+            let w = h * ir;
+            imgviewer.width(w);
+            imgviewer.height(h);
+        }
+    }
+
+    else {
+
+        imgviewer.width(imgviewer.height() * ir);
+    }
 };
 const hover_left = function () {
     $(this).parent().children(".imgviewer-blur-layer").toggleClass("blur-left");
@@ -122,7 +143,6 @@ const click_center = function (e) {
     background.append(imgviewer).append(name);
     imgviewer.removeClass("imgviewer");
     imgviewer.addClass("imgviewer-fullscreen");
-    imgviewer.css("height", "");
 
     $("body").append(background)
         .toggleClass("disable-scroll");
@@ -130,7 +150,7 @@ const click_center = function (e) {
     update_imgviewer_size(imgviewer);
 };
 
-$(document).ready(function () {
+$( window ).on( "load", function()  {
 
     $(".imgviewer").each(function () {
         //inside each function
@@ -165,15 +185,13 @@ $(document).ready(function () {
                 .hover(hover_right)
                 .click(click_right)
         );
+        update_imgviewer_size($(this));
+
     });
 
     //end of onStart function
 });
-$( window ).on( "load", function() {
-    $(".imgviewer").each(function () {
-        update_imgviewer_size($(this));
-    });
-});
+
 //to make sure the ratio is preserved when resizing
 $(window).resize(function () {
     $(".imgviewer-fullscreen, .imgviewer").each(function () {
