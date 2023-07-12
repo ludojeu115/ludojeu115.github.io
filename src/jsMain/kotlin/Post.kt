@@ -26,7 +26,7 @@ fun Post(
         H1 {
             Text(titre)
         }
-        Div({ classes("post-content") }) {
+        Div({ classes("post-content", "body-large") }) {
 
                 if (images != null) Div({
                     classes("imgviewer")
@@ -43,7 +43,7 @@ fun Post(
 
 
         }
-        Div({ classes("post-footer","on-surface-variant-text", "body-small" ) }) {
+        Div({ classes("post-footer","on-surface-variant-text", "label-large" ) }) {
             if (lien != "") {
                 A(href = lien ,{
                     classes("button")

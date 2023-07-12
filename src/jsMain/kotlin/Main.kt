@@ -58,7 +58,7 @@ fun main() {
                 H3({ classes("text-container", "surface-variant", "on-surface-variant-text") })
                 {
                     Text("Pour voir mon CV c'est ")
-                    A("CV.html") { Text("ICI") }
+                    A("CV.pdf") { Text("ICI") }
                     Text(" !")
                     Br()
                     Text("Dernière mise à jour le 04/07/2023")
@@ -179,7 +179,7 @@ fun main() {
                                 "De plus on peut utiliser Material3 Design qui nous permet de faire des applications plus jolies, sur android 12 on peu faire correspondre le thème avec les couleurs du système .")
                         Br()
                         Br()
-                        Text("Voici un exemple interactif de ce que j'ai réalisé :")
+                        Text("Voici un exemple interactif de ce que j'ai réalisé ( il utilise le même code que l'application android ):")
 
                     }
                     Canvas({//Composable canvas
@@ -205,7 +205,60 @@ fun main() {
                 }
 
             )
+            Post(
+                titre = "Application de rendu par lancé de rayons en C++",
+                description = {
 
+                    P {
+                        Text(
+                            "Le plus gros projet de ma première année de master. J'ai réalisé une application de rendu par lancé de rayons en C++ avec l'aide des librairies  "
+                        )
+
+                        A(href = "https://github.com/nothings/stb") { Text("stb_image.h ") }
+                        Text(", ")
+                        A(href = "https://github.com/assimp/assimp") { Text("Assimp ") }
+                        Text("et ")
+                        A(href = "https://www.glfw.org/") { Text("GLFW ") }
+
+                        Br()
+                        Text("L'application posséde beaucoup de fonctionnalités, notamment :")
+                        Ul {
+                            Li {
+                                Text("L'importation de modèles 3D et de textures")
+                                }
+                            Li {
+                                Text("Rendu en multi-thread")
+                            }
+                            Li {
+                                Text("Affichage des pixels rendus en temps réel")
+                            }
+                            Li {
+                                Text("Utilisation d'un KD-Tree pour accélérer le rendu")
+                            }
+                            Li {
+                                Text("Reflexion, réfraction, caustics, transparence, ombres dures et douces, textures diffuses")
+                            }
+                        }
+
+
+                    }
+
+                },
+                duree = "4 mois",
+                groupe = "1 personne",
+                tech = "C++, OpenGl, GLFW, Assimp, stb_image.h, WSL 2",
+
+                images = {
+                    Img(src = "images/projets/3D-01.png", alt = "Modèle simple importé et rendu")
+                    Img(src = "images/projets/3D-02.png", alt = "Rendu en temps réel")
+                    Img(src = "images/projets/3D-03.png", alt = "Rendu d'une scène complexe ")
+
+                },
+                attrs = {
+                    classes("projet")
+                }
+
+            )
 
         }
 
