@@ -23,7 +23,7 @@ fun Post(
         classes("post", "surface-variant", "on-surface-variant-text")
     }) {
 
-        H1 {
+        H1({classes("Projets")}) {
             Text(titre)
         }
         Div({ classes("post-content", "body-large") }) {
