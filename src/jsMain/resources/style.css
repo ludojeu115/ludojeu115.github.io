@@ -45,7 +45,7 @@ header {
 .Main{
     width:95%;
     margin: auto;
-    padding-bottom: 1em;
+    padding-bottom: 3em;
 }
 .buttonCV, .buttonProjets, .buttonComp, .buttonForm
 {
@@ -132,6 +132,9 @@ Footer {
     flex-direction: row;
     justify-content: space-evenly;
     color: var(--md-sys-color-on-background);
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     margin-top: 1em;
     gap: 2em;
 }

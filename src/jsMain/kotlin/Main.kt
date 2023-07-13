@@ -336,7 +336,7 @@ fun main() {
                 flexDirection(FlexDirection.Row)
                 justifyContent(JustifyContent.SpaceBetween)
                 alignItems(AlignItems.Center)
-                flexWrap(FlexWrap.Nowrap)
+                flexWrap(FlexWrap.Wrap)
                 gap(1.em)
                 marginBottom(2.em)
 
@@ -375,7 +375,7 @@ fun main() {
                     flexDirection(FlexDirection.Row)
                     justifyContent(JustifyContent.SpaceBetween)
                     alignItems(AlignItems.Center)
-                    flexWrap(FlexWrap.Nowrap)
+                    flexWrap(FlexWrap.Wrap)
                     gap(1.em)
                     marginBottom(2.em)
 
@@ -418,7 +418,7 @@ fun main() {
                     flexDirection(FlexDirection.Row)
                     justifyContent(JustifyContent.SpaceBetween)
                     alignItems(AlignItems.Center)
-                    flexWrap(FlexWrap.Nowrap)
+                    flexWrap(FlexWrap.Wrap)
                     gap(1.em)
 
                 }
@@ -459,6 +459,7 @@ fun main() {
             Div({style{
                 display(DisplayStyle.Flex)
                 flexDirection(FlexDirection.Column)
+
             }}){
                 H4{Text("Contact")}
                 P{Text("Email : ")
