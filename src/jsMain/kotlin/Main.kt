@@ -312,6 +312,7 @@ fun main() {
                         Img(src = "images/projets/page-02.jpg", alt = "Afficheur d'image interactif en plein écran")
                         Img(src = "images/projets/page-03.jpg", alt = "utilisation de l'afficheur d'image interactif")
                         Img(src = "images/projets/page-04.jpg", alt = "Code de la page web de ce projet")
+                        Img(src = "images/projets/page-05.jpg", alt = "Github actions pour déployer la page web sur Github pages")
 
                     },
                     attrs = {
