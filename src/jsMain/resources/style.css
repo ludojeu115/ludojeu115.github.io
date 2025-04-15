@@ -7,19 +7,61 @@ header {
     flex-wrap:wrap;
     align-content:flex-start;
     justify-content:space-evenly;
+    flex-direction: row;
     align-items:center;
     z-index: 99;
 }
-.Ludo{
-    flex-grow:4;
-    padding-left:1em;
+
+
+a{
+    text-decoration: none;
+    color: var(--md-sys-color-primary);
+    font-weight: 600;
 }
+
+:root {
+    color: var(--md-sys-color-on-surface);
+}
+#root{
+    background-size: cover !important;
+    background-blend-mode: normal;
+    background: linear-gradient(0deg,#31375f39 0%,rgb(17 19 24) 10%,rgb(17 19 24) 78%,rgba(136, 128, 62, 0.13) 92%,rgba(136, 128, 62, 0.13) 100% ),url("images/landing.png");
+}
+
+.Ludo{
+    display:flex;
+    flex-wrap:nowrap;
+    flex-grow:4;
+    text-wrap: wrap;
+    padding:0;
+    flex-basis: 0;
+    img{margin: auto 0.5em;}
+    flex-direction: row;
+}
+
+@media all and (max-width: 675px) {
+    .Ludo{
+        display:flex;
+        flex-wrap:nowrap;
+        flex-grow:0;
+        text-wrap: wrap;
+        padding:0;
+        flex-basis: 0;
+        img{margin: auto 0.5em;}
+        flex-direction: row;
+    }
+}
+
 .Infos{
     display:flex;
-    flex-grow:0.5;
+    flex-grow:0.8;
     gap:1em;
+    flex-basis: 25em;
     justify-content:space-evenly;
-
+    align-items:center;
+    text-align: center;
+    flex-direction: row;
+    flex-wrap:wrap;
 }
 
 .blurred-picture{
@@ -44,21 +86,52 @@ header {
 }
 .Main{
     width:95%;
+    max-width: 90rem;
     margin: auto;
     padding-bottom: 3em;
+    
 }
 .buttonCV, .buttonProjets, .buttonComp, .buttonForm
 {
     cursor: pointer;
 }
-
-
-.CV, .Projets, .Formation{
-    text-align: center;
-    margin: auto;
-    padding: 1em 0;
+.buttonCV, .buttonProjets, .buttonComp, .buttonForm
+{
+    cursor: pointer;
+    padding: 0.25em 0.5em;
+}
+.buttonCV:hover, .buttonProjets:hover, .buttonComp:hover, .buttonForm:hover
+{
+    cursor: pointer;
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+    border-radius: 1rem;
+    overflow: hidden;
+    padding: 0.25em 0.5em;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 4em 0px;
 }
 
+.Projets, .FormationTitle,.CVHEAD{
+    text-align: center;
+    margin: 0;
+    padding: 1em 1.5em;
+}
+
+.Projet, .Formation{
+    text-align: left;
+    margin:0;
+    padding: 1em 1.5em;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 4em 0px;
+    background-color: var(--md-sys-color-surface-container);
+
+}
+.CV{
+    text-align: center;
+    margin: 0 auto;
+    width: 50%;
+}
 
 .picture {
     transform: translate(0, -50%);

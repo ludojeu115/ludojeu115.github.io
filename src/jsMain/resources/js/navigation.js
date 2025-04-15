@@ -1,6 +1,6 @@
 $(".buttonCV").click(function() {
     $('html,body').animate({
-            scrollTop: $(".CV").offset().top},
+            scrollTop: $(".CVHEAD").offset().top},
         'slow');
 });
 $(".buttonProjets").click(function() {

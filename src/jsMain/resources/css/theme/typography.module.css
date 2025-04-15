@@ -88,3 +88,9 @@
   font-weight: var(--md-sys-typescale-title-small-font-weight);
   font-size: var(--md-sys-typescale-title-small-font-size);
 }
+:root {
+  font-family: var(--md-sys-typescale-body-medium-font-family-name);
+  font-style: var(--md-sys-typescale-body-medium-font-family-style);
+  font-weight: var(--md-sys-typescale-body-medium-font-weight);
+  font-size: var(--md-sys-typescale-body-medium-font-size);
+}

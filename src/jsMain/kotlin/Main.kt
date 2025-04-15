@@ -12,15 +12,27 @@ fun main() {
 
     renderComposable(rootElementId = "root") {
 
-        Header({ classes("surface", "on-surface-text") }) {//Portfolio
+        Header({ classes("surface") }) {//Portfolio
             Div({ classes("Ludo", "title-medium") }) {
-                H1 { Text("Ludovic Lonlas") }
+                Img(src = "images/logoweb.png",
+                            alt = "Identité visuelle de Ludovic Lonlas",
+                            attrs = {style {
+                                height(3.em)
+                            }})
+                H1({style{
+                    marginLeft(0.5.em)
+                    }}) { Text("Ludovic ")}    
+                H1({style{
+                    property("color", "var(--md-sys-color-primary)")
+                    marginLeft(0.5.em)
+                    }}){Text(" Lonlas") }
             }
             Div({ classes("Infos", "title-small") }) {
                 H2({ classes("buttonCV") }) { Text("CV") }
                 H2({ classes("buttonProjets") }) { Text("Projets") }
                 H2({ classes("buttonForm") }) { Text("Formations") }
             }
+            Div({ classes("Ludo") })
 
         }
 
@@ -38,43 +50,51 @@ fun main() {
 
             }
 
-            Div({ classes("Intro", "on-background-text", "title-large") }) {
+            Div({ classes("Intro", "display-large") }) {
+                H2({style{
+                    property("color", "var(--md-sys-color-primary)")
+                    }}) { Text("Salut !") }
+            }
+        }
+        Div({ classes("display-large") }) {
 
-                H1 { Text("Salut !") }
-                H4 {
+                H6({style{
+                    textAlign("center")
+                    margin(2.em)
+                    lineHeight(1.5.em)
+                    }
+                    
+                    }) {
                     Text("  Je suis un jeune étudiant passionné d'informatique, actuellement en formation pour un master spécialisé dans l'image et la 3D")
+                    Br()
                     Br()
                     Text("Sur mon site vous trouverez les projets sur lesquels j'ai travaillé ainsi que les formations que j'ai suivies.")
                 }
             }
-        }
-        Div({ classes("Main", "surface", "on-surface-text") }) {
+        Div({ classes("Main") }) {
 
-
-            Div({ classes("CV", "body-large") }) {
-                H1 { Text("CV") }
-                P({ classes("separator", "on-surface-variant") }) { }
-
-                H3({ classes("text-container", "surface-variant", "on-surface-variant-text")
-                style { width(40.percent) }
-                })
+            Div({ classes("CVHEAD","headline-medium") }){H1 { Text("CV") }}
+            Div({ classes("CV","Projet","body-large") }) {
+                
+                H3()
                 {
                     Text("Pour voir mon CV c'est ")
                     A("CV.pdf") { Text("ICI") }
                     Text(" !")
-                    Br()
+                }
+                H5(){
                     Text("Dernière mise à jour le 04/07/2023")
                 }
             }
 
 
-            Div({ classes("Projets", "body-large") }){
+            Div({ classes("Projets", "headline-medium") }){
                 H1 { Text("Projets") }
-                P({ classes("separator", "on-surface-variant") }) { }
+                P({ classes("separator") }) { }
             }
 
             Div({ classes("Projects-list") }) {
-                Post(
+                Experience(
                     titre = "Mod pour Starbound",
                     description = {
                         P {
@@ -96,13 +116,9 @@ fun main() {
                     images = {
                         Img(src = "images/projets/workshop-01.png", alt = "Mod vu depuis le workshop Steam")
                         Img(src = "images/projets/workshop-02.png", alt = "Image du mod en jeu")
-                    },
-                    attrs = {
-                        classes("projet")
                     }
-
                 )
-                Post(
+                Experience(
                     titre = "Importer/Exporter modèles 3D au format MD3 dans blender",
                     description = {
                         P {
@@ -134,13 +150,9 @@ fun main() {
                         Img(src = "images/projets/md3-03.jpg", alt = "Modèle créer dans blender")
                         Img(src = "images/projets/md3-04.jpg", alt = "Modèle exporté visible dans le jeu")
 
-                    },
-                    attrs = {
-                        classes("projet")
                     }
-
                 )
-                Post(
+                Experience(
                     titre = "Bot discord de blind test musical et de téléchargement de musique",
                     description = {
                         P {
@@ -160,13 +172,9 @@ fun main() {
                         Img(src = "images/projets/discord-01.png", alt = "Exemple Blind Test")
                         Img(src = "images/projets/discord-02.png", alt = "Exemple téléchargement de musique")
 
-                    },
-                    attrs = {
-                        classes("projet")
                     }
-
                 )
-                Post(
+                Experience(
                     titre = "Application Android",
                     description = {
 
@@ -202,13 +210,9 @@ fun main() {
                         Img(src = "images/projets/mobile-02.jpg", alt = "Login avec un autre thème personnalisé")
                         Img(src = "images/projets/mobile-03.jpg", alt = "Login avec thème sombre")
 
-                    },
-                    attrs = {
-                        classes("projet")
                     }
-
                 )
-                Post(
+                Experience(
                     titre = "Application de rendu par lancé de rayons en C++",
                     description = {
 
@@ -265,13 +269,9 @@ fun main() {
                         Img(src = "images/projets/3D-02.png", alt = "Rendu en temps réel")
                         Img(src = "images/projets/3D-03.png", alt = "Rendu d'une scène complexe ")
 
-                    },
-                    attrs = {
-                        classes("projet")
                     }
-
                 )
-                Post(
+                Experience(
                     titre = "Cette page web",
                     description = {
 
@@ -314,145 +314,63 @@ fun main() {
                         Img(src = "images/projets/page-04.jpg", alt = "Code de la page web de ce projet")
                         Img(src = "images/projets/page-05.jpg", alt = "Github actions pour déployer la page web sur Github pages")
 
-                    },
-                    attrs = {
-                        classes("projet")
                     }
-
                 )
             }
 
-            Div({classes("Formation", "body-large")}){
+            Div({classes("FormationTitle", "headline-medium")}){
                 H1 { Text("Formations") }
-                P({ classes("separator", "on-surface-variant") }) { }
-
-
+                P({ classes("separator") }) { }
             }
-
-            Div({//BAC
-                classes("text-container", "surface-variant", "on-surface-variant-text")
-                style { width ( 80.percent )
-                display(DisplayStyle.Flex)
-                flexDirection(FlexDirection.Row)
-                justifyContent(JustifyContent.SpaceBetween)
-                alignItems(AlignItems.Center)
-                flexWrap(FlexWrap.Wrap)
-                gap(1.em)
-                marginBottom(2.em)
-
-                }
-            }){
-                Div()
-                {
-                    H1 { Text("Baccalauréat Général Scientifique") }
-                    P { Text("Lycée Paul Sabatier, Carcassonne") }
-                    P { Text("2015 - 2018") }
-                }
-
-                Div({style {
-                    display(DisplayStyle.Flex)
-                    flexDirection(FlexDirection.Row)
-                    justifyContent(JustifyContent.SpaceBetween)
-                    alignItems(AlignItems.Center)
-                    flexWrap(FlexWrap.Wrap)
-                    gap(1.em)
-                }}){
-                    Img(src = "images/formation/Academie_de_Montpellier.svg",
-                        alt = "Identité visuelle de l'académie de Montpellier",
-                        attrs = {style {
-                            height(8.em)
-                    }})
-
-
-                }
-
-
-            }
-            Div({//Licence
-                classes("text-container", "surface-variant", "on-surface-variant-text")
-                style { width ( 80.percent )
-                    display(DisplayStyle.Flex)
-                    flexDirection(FlexDirection.Row)
-                    justifyContent(JustifyContent.SpaceBetween)
-                    alignItems(AlignItems.Center)
-                    flexWrap(FlexWrap.Wrap)
-                    gap(1.em)
-                    marginBottom(2.em)
-
-                }
-            }){
-                Div()
-                {
-                    H1 { Text("Licence informatique") }
-                    P { Text("Faculté des sciences, Montpellier") }
-                    P { Text("2018 - 2022") }
-                }
-
-                Div({style {
-                    display(DisplayStyle.Flex)
-                    flexDirection(FlexDirection.Row)
-                    justifyContent(JustifyContent.SpaceBetween)
-                    alignItems(AlignItems.Center)
-                    flexWrap(FlexWrap.Wrap)
-                    gap(1.em)
-                }}){
-                    Img(src = "images/formation/logo_fds.jpg",
-                        alt = "Identité visuelle de la faculté des sciences",
-                        attrs = {style {
-                            height(4.em)
-                        }})
-                    Img(src = "images/formation/logo_um_2022_rouge_RVB.svg",
-                        alt = "Identité visuelle de l'université de Montpellier",
-                        attrs = {style {
-                            height(4.em)
-                        }})
-
-                }
-
-
-            }
-            Div({//Master
-                classes("text-container", "surface-variant", "on-surface-variant-text")
-                style { width ( 80.percent )
-                    display(DisplayStyle.Flex)
-                    flexDirection(FlexDirection.Row)
-                    justifyContent(JustifyContent.SpaceBetween)
-                    alignItems(AlignItems.Center)
-                    flexWrap(FlexWrap.Wrap)
-                    gap(1.em)
-
-                }
-            }){
-                Div()
-                {
-                    H1 { Text("Master Imagine") }
-                    P { Text("Faculté des sciences, Montpellier") }
-                    P { Text("2022 - Actuel") }
-                }
-
-                Div({style {
-                    display(DisplayStyle.Flex)
-                    flexDirection(FlexDirection.Row)
-                    justifyContent(JustifyContent.SpaceBetween)
-                    alignItems(AlignItems.Center)
-                    flexWrap(FlexWrap.Wrap)
-                    gap(1.em)
-                }}){
-                    Img(src = "images/formation/logo_fds.jpg",
-                        alt = "Identité visuelle de la faculté des sciences",
-                        attrs = {style {
-                            height(4.em)
-                        }})
-                    Img(src = "images/formation/logo_um_2022_rouge_RVB.svg",
-                        alt = "Identité visuelle de l'université de Montpellier",
-                        attrs = {style {
-                            height(4.em)
-                        }})
-
-                }
-
-
-            }
+            Div({ classes("Projects-list") }) 
+            {
+                Formation(
+                    nom = "Baccalauréat Général Scientifique",
+                    lieu = "Lycée Paul Sabatier, Carcassonne",
+                    duree = "2015 - 2018",
+                    images = {
+                        Img(src = "images/formation/Academie_de_Montpellier.svg",
+                            alt = "Identité visuelle de l'académie de Montpellier",
+                            attrs = {style {
+                                height(8.em)
+                            }})
+                    }
+                )
+                Formation(
+                    nom = "Licence informatique",
+                    lieu = "Faculté des sciences, Montpellier",
+                    duree = "2018 - 2022",
+                    images = {
+                        Img(src = "images/formation/logo_fds.jpg",
+                            alt = "Identité visuelle de la faculté des sciences",
+                            attrs = {style {
+                                height(4.em)
+                            }})
+                        Img(src = "images/formation/logo_um_2022_rouge_RVB.svg",
+                            alt = "Identité visuelle de l'université de Montpellier",
+                            attrs = {style {
+                                height(4.em)
+                            }})
+                    }
+                )
+                Formation(
+                    nom = "Master Informatique - Imagine",
+                    lieu = "Faculté des sciences, Montpellier",
+                    duree = "2022 - 2024",
+                    images = {
+                        Img(src = "images/formation/logo_fds.jpg",
+                            alt = "Identité visuelle de la faculté des sciences",
+                            attrs = {style {
+                                height(4.em)
+                            }})
+                        Img(src = "images/formation/logo_um_2022_rouge_RVB.svg",
+                            alt = "Identité visuelle de l'université de Montpellier",
+                            attrs = {style {
+                                height(4.em)
+                            }})
+                    }
+                )
+            }           
         }
 
         Footer {
