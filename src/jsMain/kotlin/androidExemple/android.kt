@@ -1,7 +1,4 @@
 package androidExemple
-
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -40,12 +37,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
+import portfolio.generated.resources.*
 import org.jetbrains.compose.resources.painterResource
-
 /// What the Chercheur sees
 
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun AnnonceChercheur(
     modifier: Modifier = Modifier,
@@ -77,7 +73,6 @@ fun AnnonceChercheur(
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
         elevation = CardDefaults.cardElevation(4.dp),
     ) {
-
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -106,7 +101,7 @@ fun AnnonceChercheur(
                     modifier = Modifier
                         .width(80.dp)
                         .height(80.dp),
-                    painter = painterResource(res = annonceImage),
+                    painter = painterResource(resource = Res.drawable.Ludo),
                     contentDescription = "Image de l'annonce",
                     contentScale = ContentScale.Crop
                 )
@@ -213,7 +208,7 @@ fun AnnonceChercheur(
                             ), onClick = { onAnnonceShare(jobOffer) }) {
 
                             Image(
-                                painter = painterResource(res = "images/share.png"),
+                                painter = painterResource(resource = Res.drawable.share),
                                 contentDescription = "Partager l'annonce",
                                 modifier = Modifier.size(24.dp)
                             )
@@ -232,7 +227,7 @@ fun AnnonceChercheur(
 
             Image(
                 /// Open and close button
-                painter = painterResource(res = "images/expand.png"),
+                painter = painterResource(resource = Res.drawable.expand),
                 contentDescription = "Ouvrir l'annonce",
                 modifier = Modifier
                     .clickable(onClick = { AnnonceState = !AnnonceState })

@@ -6,7 +6,6 @@ import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.HTMLDivElement
-
 @Composable
 fun Experience(
     titre: String,

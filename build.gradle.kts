@@ -1,22 +1,10 @@
-//https://github.com/Kotlin/kotlin-wasm-examples/blob/main/compose-imageviewer/webApp/build.gradle.kts
-
-
-group = "ludojeu115.webpage"
-version = "1.0-SNAPSHOT"
-
-repositories {
-    google()
-    mavenCentral()
-    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-    mavenLocal()
-
-}
+import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
 
 plugins {
-    kotlin("multiplatform")
-    id("org.jetbrains.compose")
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.composeMultiplatform)
+    alias(libs.plugins.composeCompiler)
 }
-
 val copyResources = tasks.create("copyJsResourcesWorkaround", Copy::class.java) {
     from("src/jsMain/resources")
     into("build/distributions/resources")
@@ -27,38 +15,30 @@ afterEvaluate {
 
 kotlin {
     js(IR) {
+        moduleName = "portfolio"
         browser {
-            testTask {
-                testLogging.showStandardStreams = true
-                useKarma {
-                    useChromeHeadless()
-                    useFirefox()
-                }
+            commonWebpackConfig {
+                outputFileName = "portfolio.js"
             }
         }
         binaries.executable()
     }
     sourceSets {
-        val jsMain by getting {
-            dependencies {
-                implementation(compose.html.core)
-                implementation(compose.runtime)
-                implementation(compose.ui)
-                implementation(compose.foundation)
-                implementation(compose.material)
-                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
-                implementation(compose.components.resources)
-                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
-                api(compose.material3)
-            }
+        commonMain.dependencies {
+            implementation(compose.components.resources)
         }
-        val jsTest by getting {
-            dependencies {
-                implementation(kotlin("test-js"))
-            }
+        jsMain .dependencies {
+            implementation(npm("highlight.js", "10.7.2"))
+            implementation(compose.runtime)
+            implementation(compose.html.core)
+            implementation(compose.foundation)
+            implementation(compose.material)
+            implementation(compose.material3)
+            implementation(compose.ui)
+            implementation(compose.components.resources)
+            implementation(compose.components.uiToolingPreview)
+            implementation(libs.androidx.lifecycle.viewmodel)
+            implementation(libs.androidx.lifecycle.runtime.compose)
         }
     }
-}
-compose.experimental {
-    web.application {}
 }

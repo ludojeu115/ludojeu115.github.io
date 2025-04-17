@@ -1,4 +1,16 @@
-import androidx.compose.ui.window.Window
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
+import androidx.compose.runtime.*
+import androidx.compose.ui.window.CanvasBasedWindow
+import androidx.compose.ui.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.IntSize
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.ComposeViewport
 import org.jetbrains.compose.web.attributes.height
 import org.jetbrains.compose.web.attributes.width
 import org.jetbrains.compose.web.css.*
@@ -7,6 +19,7 @@ import org.jetbrains.compose.web.dom.A
 import org.jetbrains.compose.web.renderComposable
 import org.jetbrains.skiko.wasm.onWasmReady
 
+@OptIn(ExperimentalComposeUiApi::class)
 fun main() {
 
 
@@ -175,30 +188,34 @@ fun main() {
                     }
                 )
                 Experience(
-                    titre = "Application Android",
+                    titre = "Prototype d'application Android",
                     description = {
 
                         P {
                             Text(
-                                "Lors d'un projet scolaire, un collègue et moi avons créer une application Android qui permet de proposer et de postuler à des offres d'emploi, J'ai été chargé de réalisé l'interface utilisateur."
+                                "Lors d'un projet universitaire et en collaboration avec un collègue, nous avons créé une application Android qui permet de proposer et de postuler à des offres d'emploi. J'ai été chargé de réaliser l'interface utilisateur."
                             )
                             Br()
                             Text(
-                                "Pour réaliser l'interface j'ai utilisé Jetpack Compose. L'avantage de compose est qu'il est multiplateforme, il est possible de l'utiliser pour créer des applications Android, des applications IOS et des applications web(beta)." +
-                                        "De plus on peut utiliser Material3 Design qui nous permet de faire des applications plus jolies, sur android 12 on peu faire correspondre le thème avec les couleurs du système ."
+                                "Pour réaliser l'interface j'ai utilisé Kotlin et Jetpack Compose. L'avantage de compose est qu'il est multiplateforme, il est possible de l'utiliser pour créer des applications Android, des applications IOS et des applications web(beta)." +
+                                        "De plus nous avont implémenté Material3 Design qui nous permet de faire des applications plus sobres et esthétiques, sur android 12+ les couleurs de l'applications sont contrôlées par le système ."
                             )
                             Br()
                             Br()
                             Text("Voici un exemple interactif de ce que j'ai réalisé ( il utilise le même code que l'application android ):")
 
                         }
-                        Canvas({//Composable canvas
-                            width(400)
-                            height(300)
+                        Div({//Composable canvas
+                            style {
+                                width(400.px)
+                                height(300.px)
+                            }
+
                             id("ComposeTarget")
                             classes("android")
 
                         })
+
                     },
                     duree = "2 mois",
                     groupe = "2 personne",
@@ -316,6 +333,51 @@ fun main() {
 
                     }
                 )
+                Experience(
+                    titre = "Jeu en réalité virtuelle",
+                    description = {
+
+                        P {
+                            Text("Pour réaliser cette page web, je voulais utiliser")
+                            B { Text("Compose") }
+                            Text(" pour avoir accès au même composable que ceux de la version android, cependant ")
+                            B {
+                                Text(
+                                    "Compose pour le web"
+                                )
+                            }
+                            Text(
+                                " ne possède pas les mêmes composables que Compose Multiplatform" +
+                                        ", il est quand même possible d'intégrer des composables android via un canvas.  "
+                            )
+                            Br()
+                            Text("J'utilise aussi ")
+                            B { Text("jQuery") }
+                            Text(" avec compose pour utiliser un afficheur d'image interactif et pour naviguer la page à l'aide de boutons.")
+                            Br()
+                            Br()
+                            Text(
+                                "J'ai remarqué que créer une page web en utilisant compose est plus compliqué qu'en utilisant html," +
+                                        " cependant compose permet d'avoir un meilleur contrôle de la page et de pouvoir réutiliser le code, " +
+                                        "ce qui est très utile pour les pages web avec beaucoup de contenu."
+                            )
+                        }
+
+                    },
+                    duree = "1 mois",
+                    groupe = "1 personne",
+                    tech = "Unity, Oculus Quest 2, C#",
+                    lien = "https://github.com/ludojeu115/StereoCook",
+                    nomduLien = "Code Source",
+                    images = {
+                        Img(src = "images/projets/page-01.jpg", alt = "Composable des projets")
+                        Img(src = "images/projets/page-02.jpg", alt = "Afficheur d'image interactif en plein écran")
+                        Img(src = "images/projets/page-03.jpg", alt = "utilisation de l'afficheur d'image interactif")
+                        Img(src = "images/projets/page-04.jpg", alt = "Code de la page web de ce projet")
+                        Img(src = "images/projets/page-05.jpg", alt = "Github actions pour déployer la page web sur Github pages")
+
+                    }
+                )
             }
 
             Div({classes("FormationTitle", "headline-medium")}){
@@ -409,8 +471,13 @@ fun main() {
 
     }
     onWasmReady {//launch composable when wasm is ready
-        Window {
-            MainPage()
+        ComposeViewport("ComposeTarget") {
+            Box(
+                modifier = Modifier.fillMaxSize().background(androidx.compose.ui.graphics.Color(29, 32, 36))
+            )
+            {
+                MainPage()
+            }
         }
     }
 }
