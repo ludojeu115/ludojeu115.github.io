@@ -4,31 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e9f2f2f-992e-4f97-8f2a-834ca084b3fa" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/AndroidProjectSystem.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/portfolio_js.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/portfolio_wasm_js.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Portfolio_js_1_0_SNAPSHOT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/projectSettingsUpdater.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin-js-store/yarn.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jsMain/kotlin/Experience.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jsMain/kotlin/Experience.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jsMain/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jsMain/kotlin/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jsMain/kotlin/MainPage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jsMain/kotlin/MainPage.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jsMain/kotlin/androidExemple/android.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jsMain/kotlin/androidExemple/android.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jsMain/resources/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/jsMain/resources/index.html" afterDir="false" />
+    <list default="true" id="5e9f2f2f-992e-4f97-8f2a-834ca084b3fa" name="Changes" comment="~ Updated Dependencies &#10;- Removed useless compile settings&#10;+ Added start of VR section">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/build-gradle-project.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build-gradle-project.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +58,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ludojeu115&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ludojeu115/ludojeu115.github.io.git&quot;,
+    &quot;accountId&quot;: &quot;a1ee39c7-d20d-4c8b-a358-8b23aec5539f&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -88,27 +78,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Build portfolio.executor": "Run",
-    "Gradle.portfolio [build].executor": "Run",
-    "Gradle.portfolio [jsBrowserDevelopmentExecutableDistribution].executor": "Run",
-    "Gradle.portfolio [jsBrowserDevelopmentRun].executor": "Run",
-    "Gradle.portfolio [jsBrowserDistribution].executor": "Run",
-    "Gradle.portfolio [jsBrowserProductionRun].executor": "Run",
-    "Gradle.portfolio [jsBrowserRun].executor": "Run",
-    "Gradle.portfolio [kotlinUpgradePackageLock].executor": "Run",
-    "Gradle.portfolio [kotlinUpgradeYarnLock].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "E:/ludojeu115/Desktop/portfolio",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build portfolio.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.portfolio [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.portfolio [jsBrowserDevelopmentExecutableDistribution].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.portfolio [jsBrowserDevelopmentRun].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.portfolio [jsBrowserDistribution].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.portfolio [jsBrowserProductionRun].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.portfolio [jsBrowserRun].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.portfolio [kotlinUpgradePackageLock].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.portfolio [kotlinUpgradeYarnLock].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/ludojeu115/Desktop/portfolio&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Gradle.portfolio [jsBrowserDevelopmentRun]">
     <configuration name="portfolio [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -223,9 +213,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.portfolio [jsBrowserDevelopmentRun]" />
+        <item itemvalue="Gradle.portfolio [build]" />
         <item itemvalue="Gradle.portfolio [jsBrowserDistribution]" />
         <item itemvalue="Gradle.portfolio [jsBrowserProductionRun]" />
-        <item itemvalue="Gradle.portfolio [build]" />
         <item itemvalue="Gradle.portfolio [jsBrowserDevelopmentExecutableDistribution]" />
       </list>
     </recent_temporary>
@@ -238,6 +228,27 @@
       <option name="presentableId" value="Default" />
       <updated>1744846882928</updated>
     </task>
+    <task id="LOCAL-00001" summary="~ Updated Dependencies &#10;- Removed useless compile settings&#10;+ Added start of VR section">
+      <option name="closed" value="true" />
+      <created>1744861638445</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1744861638445</updated>
+    </task>
+    <task id="LOCAL-00002" summary="~ Updated Dependencies &#10;- Removed useless compile settings&#10;+ Added start of VR section">
+      <option name="closed" value="true" />
+      <created>1744861733329</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1744861733329</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="~ Updated Dependencies &#10;- Removed useless compile settings&#10;+ Added start of VR section" />
+    <option name="LAST_COMMIT_MESSAGE" value="~ Updated Dependencies &#10;- Removed useless compile settings&#10;+ Added start of VR section" />
   </component>
 </project>

@@ -5,13 +5,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
 }
-val copyResources = tasks.create("copyJsResourcesWorkaround", Copy::class.java) {
-    from("src/jsMain/resources")
-    into("build/distributions/resources")
-}
-afterEvaluate {
-    project.tasks.getByName("build").finalizedBy(copyResources)
-}
+
 
 kotlin {
     js(IR) {
