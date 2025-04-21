@@ -1,0 +1,148 @@
+Index: .github/workflows/build-gradle-project.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>name: Build Gradle project\r\n\r\non:\r\n  push:\r\n    branches: [\"main\"]\r\n  workflow_dispatch:\r\npermissions:\r\n  contents: read\r\n  pages: write\r\n  id-token: write\r\nconcurrency:\r\n  group: \"pages\"\r\n  cancel-in-progress: false\r\njobs:\r\n  build:\r\n    runs-on: ubuntu-latest\r\n    steps:\r\n      - name: Checkout project sources\r\n        uses: actions/checkout@v4\r\n      - name: Setup Java\r\n        uses: actions/setup-java@v4\r\n        with:\r\n          distribution: 'temurin'\r\n          java-version: 21\r\n      - name: Setup Gradle\r\n        uses: gradle/actions/setup-gradle@v4\r\n      - name: Build with Gradle\r\n        run : ./gradlew build\r\n\r\n      - name: Configure GitHub Pages\r\n        uses: actions/configure-pages@v5.0.0\r\n      - name: Upload static files as artifact\r\n        id: deployment\r\n        uses: actions/upload-pages-artifact@v3 # or specific \"vX.X.X\" version tag for this action\r\n        with:\r\n          # Upload entire repository\r\n          path: './build/distributions'\r\n  deploy:\r\n    environment:\r\n      name: github-pages\r\n      url: ${{ steps.deployment.outputs.page_url }}\r\n    runs-on: ubuntu-latest\r\n    needs: build\r\n    steps:\r\n      - name: Deploy to GitHub Pages\r\n        id: deployment\r\n        uses: actions/deploy-pages@v4\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.github/workflows/build-gradle-project.yml b/.github/workflows/build-gradle-project.yml
+--- a/.github/workflows/build-gradle-project.yml	(revision 17908354b653e8d1fdce5a543b93f101aa00d08d)
++++ b/.github/workflows/build-gradle-project.yml	(date 1744862868894)
+@@ -34,7 +34,7 @@
+         uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
+         with:
+           # Upload entire repository
+-          path: './build/distributions'
++          path: './build/dist/js/productionExecutable'
+   deploy:
+     environment:
+       name: github-pages
+Index: build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension\r\n\r\nplugins {\r\n    alias(libs.plugins.kotlinMultiplatform)\r\n    alias(libs.plugins.composeMultiplatform)\r\n    alias(libs.plugins.composeCompiler)\r\n}\r\nval copyResources = tasks.create(\"copyJsResourcesWorkaround\", Copy::class.java) {\r\n    from(\"src/jsMain/resources\")\r\n    into(\"build/distributions/resources\")\r\n}\r\nafterEvaluate {\r\n    project.tasks.getByName(\"build\").finalizedBy(copyResources)\r\n}\r\n\r\nkotlin {\r\n    js(IR) {\r\n        moduleName = \"portfolio\"\r\n        browser {\r\n            commonWebpackConfig {\r\n                outputFileName = \"portfolio.js\"\r\n            }\r\n        }\r\n        binaries.executable()\r\n    }\r\n    sourceSets {\r\n        commonMain.dependencies {\r\n            implementation(compose.components.resources)\r\n        }\r\n        jsMain .dependencies {\r\n            implementation(npm(\"highlight.js\", \"10.7.2\"))\r\n            implementation(compose.runtime)\r\n            implementation(compose.html.core)\r\n            implementation(compose.foundation)\r\n            implementation(compose.material)\r\n            implementation(compose.material3)\r\n            implementation(compose.ui)\r\n            implementation(compose.components.resources)\r\n            implementation(compose.components.uiToolingPreview)\r\n            implementation(libs.androidx.lifecycle.viewmodel)\r\n            implementation(libs.androidx.lifecycle.runtime.compose)\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build.gradle.kts b/build.gradle.kts
+--- a/build.gradle.kts	(revision 17908354b653e8d1fdce5a543b93f101aa00d08d)
++++ b/build.gradle.kts	(date 1744862912962)
+@@ -5,13 +5,7 @@
+     alias(libs.plugins.composeMultiplatform)
+     alias(libs.plugins.composeCompiler)
+ }
+-val copyResources = tasks.create("copyJsResourcesWorkaround", Copy::class.java) {
+-    from("src/jsMain/resources")
+-    into("build/distributions/resources")
+-}
+-afterEvaluate {
+-    project.tasks.getByName("build").finalizedBy(copyResources)
+-}
++
+ 
+ kotlin {
+     js(IR) {
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"5e9f2f2f-992e-4f97-8f2a-834ca084b3fa\" name=\"Changes\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/AndroidProjectSystem.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/artifacts/portfolio_js.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/artifacts/portfolio_wasm_js.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/encodings.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.gitignore\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/artifacts/Portfolio_js_1_0_SNAPSHOT.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/gradle.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/gradle.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/indexLayout.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/projectSettingsUpdater.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/vcs.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/vcs.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/build.gradle.kts\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/build.gradle.kts\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/gradle.properties\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/gradle.properties\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/gradlew\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/gradlew\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/gradlew.bat\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/gradlew.bat\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/kotlin-js-store/yarn.lock\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/settings.gradle.kts\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/settings.gradle.kts\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/jsMain/kotlin/Experience.kt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/jsMain/kotlin/Experience.kt\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/jsMain/kotlin/Main.kt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/jsMain/kotlin/Main.kt\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/jsMain/kotlin/MainPage.kt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/jsMain/kotlin/MainPage.kt\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/jsMain/kotlin/androidExemple/android.kt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/jsMain/kotlin/androidExemple/android.kt\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/jsMain/resources/index.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/jsMain/resources/index.html\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"ExternalProjectsManager\">\r\n    <system id=\"GRADLE\">\r\n      <state>\r\n        <task path=\"$PROJECT_DIR$\">\r\n          <activation />\r\n        </task>\r\n        <projects_view>\r\n          <tree_state>\r\n            <expand>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"portfolio\" type=\"f1a62948:ProjectNode\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"portfolio\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"portfolio\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n                <item name=\"build\" type=\"c8890929:TasksNode$1\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"portfolio\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n                <item name=\"kotlin browser\" type=\"c8890929:TasksNode$1\" />\r\n              </path>\r\n            </expand>\r\n            <select />\r\n          </tree_state>\r\n        </projects_view>\r\n      </state>\r\n    </system>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 5\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2vpfLmWhzaYAZcRQpPmqIhmUAvy\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Gradle.Build portfolio.executor\": \"Run\",\r\n    \"Gradle.portfolio [build].executor\": \"Run\",\r\n    \"Gradle.portfolio [jsBrowserDevelopmentExecutableDistribution].executor\": \"Run\",\r\n    \"Gradle.portfolio [jsBrowserDevelopmentRun].executor\": \"Run\",\r\n    \"Gradle.portfolio [jsBrowserDistribution].executor\": \"Run\",\r\n    \"Gradle.portfolio [jsBrowserProductionRun].executor\": \"Run\",\r\n    \"Gradle.portfolio [jsBrowserRun].executor\": \"Run\",\r\n    \"Gradle.portfolio [kotlinUpgradePackageLock].executor\": \"Run\",\r\n    \"Gradle.portfolio [kotlinUpgradeYarnLock].executor\": \"Run\",\r\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"git-widget-placeholder\": \"main\",\r\n    \"ignore.virus.scanning.warn.message\": \"true\",\r\n    \"last_opened_file_path\": \"E:/ludojeu115/Desktop/portfolio\",\r\n    \"settings.editor.selected.configurable\": \"reference.settingsdialog.project.gradle\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RunManager\" selected=\"Gradle.portfolio [jsBrowserDevelopmentRun]\">\r\n    <configuration name=\"portfolio [build]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"build\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <RunAsTest>false</RunAsTest>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"portfolio [jsBrowserDevelopmentExecutableDistribution]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"jsBrowserDevelopmentExecutableDistribution\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <RunAsTest>false</RunAsTest>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"portfolio [jsBrowserDevelopmentRun]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"jsBrowserDevelopmentRun\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <RunAsTest>false</RunAsTest>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"portfolio [jsBrowserDistribution]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"jsBrowserDistribution\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <RunAsTest>false</RunAsTest>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"portfolio [jsBrowserProductionRun]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"jsBrowserProductionRun\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <RunAsTest>false</RunAsTest>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Gradle.portfolio [jsBrowserDevelopmentRun]\" />\r\n        <item itemvalue=\"Gradle.portfolio [jsBrowserDistribution]\" />\r\n        <item itemvalue=\"Gradle.portfolio [jsBrowserProductionRun]\" />\r\n        <item itemvalue=\"Gradle.portfolio [build]\" />\r\n        <item itemvalue=\"Gradle.portfolio [jsBrowserDevelopmentExecutableDistribution]\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"5e9f2f2f-992e-4f97-8f2a-834ca084b3fa\" name=\"Changes\" comment=\"\" />\r\n      <created>1744846882928</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1744846882928</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 17908354b653e8d1fdce5a543b93f101aa00d08d)
++++ b/.idea/workspace.xml	(date 1744862964490)
+@@ -4,31 +4,9 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="5e9f2f2f-992e-4f97-8f2a-834ca084b3fa" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/.idea/AndroidProjectSystem.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/portfolio_js.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/portfolio_wasm_js.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Portfolio_js_1_0_SNAPSHOT.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/indexLayout.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/projectSettingsUpdater.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/kotlin-js-store/yarn.lock" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/jsMain/kotlin/Experience.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jsMain/kotlin/Experience.kt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/jsMain/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jsMain/kotlin/Main.kt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/jsMain/kotlin/MainPage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jsMain/kotlin/MainPage.kt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/jsMain/kotlin/androidExemple/android.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jsMain/kotlin/androidExemple/android.kt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/jsMain/resources/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/jsMain/resources/index.html" afterDir="false" />
++    <list default="true" id="5e9f2f2f-992e-4f97-8f2a-834ca084b3fa" name="Changes" comment="~ Updated Dependencies &#10;- Removed useless compile settings&#10;+ Added start of VR section">
++      <change beforePath="$PROJECT_DIR$/.github/workflows/build-gradle-project.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build-gradle-project.yml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -80,6 +58,18 @@
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
++  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
++  "lastFilter": {
++    "state": "OPEN",
++    "assignee": "ludojeu115"
++  }
++}]]></component>
++  <component name="GithubPullRequestsUISettings"><![CDATA[{
++  "selectedUrlAndAccountId": {
++    "url": "https://github.com/ludojeu115/ludojeu115.github.io.git",
++    "accountId": "a1ee39c7-d20d-4c8b-a358-8b23aec5539f"
++  }
++}]]></component>
+   <component name="ProjectColorInfo">{
+   &quot;associatedIndex&quot;: 5
+ }</component>
+@@ -223,9 +213,9 @@
+     <recent_temporary>
+       <list>
+         <item itemvalue="Gradle.portfolio [jsBrowserDevelopmentRun]" />
++        <item itemvalue="Gradle.portfolio [build]" />
+         <item itemvalue="Gradle.portfolio [jsBrowserDistribution]" />
+         <item itemvalue="Gradle.portfolio [jsBrowserProductionRun]" />
+-        <item itemvalue="Gradle.portfolio [build]" />
+         <item itemvalue="Gradle.portfolio [jsBrowserDevelopmentExecutableDistribution]" />
+       </list>
+     </recent_temporary>
+@@ -238,6 +228,27 @@
+       <option name="presentableId" value="Default" />
+       <updated>1744846882928</updated>
+     </task>
++    <task id="LOCAL-00001" summary="~ Updated Dependencies &#10;- Removed useless compile settings&#10;+ Added start of VR section">
++      <option name="closed" value="true" />
++      <created>1744861638445</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1744861638445</updated>
++    </task>
++    <task id="LOCAL-00002" summary="~ Updated Dependencies &#10;- Removed useless compile settings&#10;+ Added start of VR section">
++      <option name="closed" value="true" />
++      <created>1744861733329</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1744861733329</updated>
++    </task>
++    <option name="localTasksCounter" value="3" />
+     <servers />
+   </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="~ Updated Dependencies &#10;- Removed useless compile settings&#10;+ Added start of VR section" />
++    <option name="LAST_COMMIT_MESSAGE" value="~ Updated Dependencies &#10;- Removed useless compile settings&#10;+ Added start of VR section" />
++  </component>
+ </project>
+\ No newline at end of file

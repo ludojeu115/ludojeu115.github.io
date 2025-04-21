@@ -54,6 +54,7 @@ const click_back = function (e) {
     $(this).remove();
 };
 
+
 const click_left = function (e) {
     e.stopPropagation();
     let imgviewer = $(this).parent();
@@ -135,7 +136,6 @@ const click_center = function (e) {
     imgviewer
         .children(".imgviewer-blur-layer")
         .removeClass("blurred blur-right blur-left"); //remove existing blur to avoid issues
-
     let name = $("<p></p>").text(get_img_viewer_top_element(imgviewer).alt).addClass("imgviewer-fullscreen-name on-surface-text title-large");
 
 

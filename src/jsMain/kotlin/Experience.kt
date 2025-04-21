@@ -23,6 +23,11 @@ fun Experience(
     Div(attrs = {
         if (attrs != null) apply(attrs)
         classes("Projet")
+        style {
+            display(DisplayStyle.Flex)
+            flexDirection(FlexDirection.Column)
+
+        }
     }) {
 
         H1({style {
@@ -38,6 +43,8 @@ fun Experience(
                     style {
                         property("float", "right")
                         property("height", "10em")
+                        marginLeft(1.em)
+                        marginBottom(1.em)
                     }
                 }) {
                     images()
