@@ -1,7 +1,5 @@
 import androidx.compose.runtime.*
 import org.jetbrains.compose.web.dom.AttrBuilderContext
-import org.jetbrains.compose.web.attributes.height
-import org.jetbrains.compose.web.attributes.width
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.*

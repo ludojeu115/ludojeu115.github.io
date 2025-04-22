@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e9f2f2f-992e-4f97-8f2a-834ca084b3fa" name="Changes" comment="- Removed useless copy">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="5e9f2f2f-992e-4f97-8f2a-834ca084b3fa" name="Changes" comment="+ Added new experiences&#10;~ Moved around some things">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/jsMain/kotlin/Experience.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jsMain/kotlin/Experience.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jsMain/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jsMain/kotlin/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jsMain/resources/css/imgviewer.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/jsMain/resources/css/imgviewer.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jsMain/resources/js/imgviewer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/jsMain/resources/js/imgviewer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,7 +257,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744863068197</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="+ Added new experiences&#10;~ Moved around some things">
+      <option name="closed" value="true" />
+      <created>1745247493814</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1745247493814</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -279,6 +282,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="~ Updated Dependencies &#10;- Removed useless compile settings&#10;+ Added start of VR section" />
     <MESSAGE value="- Removed useless copy" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Removed useless copy" />
+    <MESSAGE value="+ Added new experiences&#10;~ Moved around some things" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ Added new experiences&#10;~ Moved around some things" />
   </component>
 </project>
