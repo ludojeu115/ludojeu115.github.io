@@ -87,7 +87,7 @@ fun main() {
                     Text(" !")
                 }
                 H5{
-                    Text("Dernière mise à jour le 04/07/2023")
+                    Text("Dernière mise à jour le 22/04/2025")
                 }
             }
 
