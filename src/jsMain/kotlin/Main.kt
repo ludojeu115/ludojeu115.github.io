@@ -69,7 +69,7 @@ fun main() {
                     }
                     
                     }) {
-                    Text("  Je suis un jeune ex-étudiant passionné d'informatique, actuellement en formation pour un master spécialisé dans l'image et la 3D")
+                    Text("  Je suis un jeune ex-étudiant passionné d'informatique, je possède un master spécialisé dans l'image et la 3D")
                     Br()
                     Br()
                     Text("Sur mon site vous trouverez les projets sur lesquels j'ai travaillé ainsi que les formations que j'ai suivies.")
