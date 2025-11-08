@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="portfolio-js">
-    <output-path>$PROJECT_DIR$/build/libs</output-path>
-    <root id="archive" name="portfolio-js.jar">
-      <element id="module-output" name="portfolio.jsMain" />
-    </root>
-  </artifact>
-</component>

@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="portfolio-wasm-js">
-    <output-path>$PROJECT_DIR$/build/libs</output-path>
-    <root id="archive" name="portfolio-wasm-js.jar">
-      <element id="module-output" name="portfolio.wasmJsMain" />
-    </root>
-  </artifact>
-</component>
